@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Upload your things:</h1>
-  <form method="post" action="test.php" enctype="multipart/form-data">
+  <form method="post" action="/upload" enctype="multipart/form-data">
     <input type="text" name="title"></input>
     <input type="text" name="author"></input>
     <input type="text" name="description"></input>
@@ -18,7 +18,6 @@
             <input type="file" name="application" id="application" />
         </div>
     </div>
-    <input type="file" name="file2" />
     <input type="submit" value="Submit">
   </form>
   <script src="../js/dragndrop.js"></script>
