@@ -1,0 +1,17 @@
+/* line 5, ../sass/index.sass */
+body {
+  background-color: #ECEFF1;
+}
+/* line 7, ../sass/index.sass */
+body nav {
+  background-color: #607D8B;
+}
+/* line 9, ../sass/index.sass */
+body div {
+  margin: auto;
+  width: 75%;
+}
+/* line 12, ../sass/index.sass */
+body div h1, body div p {
+  text-align: center;
+}
