@@ -31,18 +31,24 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, name)
 }
 
-// TODO Add templating to /projects
 func ProjectHandler(w http.ResponseWriter, r *http.Request) {
 
 	Container.RLock()
 	defer Container.RUnlock()
 	log.Println("Received a request to /projects")
-	//p, _ := loadPage(title)
+
+	projects := make([]Project, 0)
+	for _, p := range Container.projects {
+		// add it to a slice of projects
+		projects = projects.append(p)
+
+	}
+
 	t, err := template.ParseFiles("templates/project.html.tmpl")
 	if err != nil {
 		log.Error(err)
 	}
-	t.Execute(w, nil)
+	t.Execute(w, projects)
 }
 
 func UploadGetHandler(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +59,10 @@ func UploadGetHandler(w http.ResponseWriter, r *http.Request) {
 
 func UploadPostHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Received a POST request to /upload")
-
+	Container.AddProject(r)
+	// TODO redirect you to a success page!
+	// Fire off a goroute to spin up the docker file
+	// Add a file pointer into the struct
 }
 
 type Project struct {
@@ -95,3 +104,4 @@ var Container = &ProjectContainer{
 
 // TODO add the method that fires off the docker container.
 // TODO add the method that adds the hostname to the router.
+// TODO reverse proxy
