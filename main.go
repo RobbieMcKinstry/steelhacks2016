@@ -14,10 +14,9 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
-	r.HandleFunc("/project", ProjectHandler)
+	r.HandleFunc("/projects", ProjectHandler)
 	r.HandleFunc("/upload", UploadGetHandler).Methods("GET")
 	r.HandleFunc("/upload", UploadGetHandler).Methods("POST")
-
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.Handle("/", r)
 	log.Println("Running on localhost:8080")
@@ -31,7 +30,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProjectHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("Received a request to /project")
+	log.Println("Received a request to /projects")
 	//p, _ := loadPage(title)
 	t, err := template.ParseFiles("templates/project.html.tmpl")
 	if err != nil {
@@ -41,9 +40,13 @@ func ProjectHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func UploadGetHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("Received a request to /upload")
+	log.Println("Received a GET request to /upload")
+	name := "static/html/upload.html"
+	http.ServeFile(w, r, name)
+
 }
 
 func UploadPostHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Received a POST request to /upload")
 
 }
