@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+  <h1>Upload your things:</h1>
+  <form method="post" action="/upload" enctype="multipart/form-data">
+    <input type="text" name="title"></input>
+    <input type="text" name="author"></input>
+    <input type="text" name="description"></input>
+    <div id="drop">
+        Drop files here...
+        <div id="browse">
+            <input type="file" name="application" id="application" />
+        </div>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+  <script src="../js/dragndrop.js"></script>
+</body>
+</html>
