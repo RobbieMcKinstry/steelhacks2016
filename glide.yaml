@@ -1,2 +1,5 @@
 package: github.com/RobbieMcKinstry/steelhacks2016
-import: []
+import:
+- package: github.com/Sirupsen/logrus
+- package: github.com/spf13/viper
+- package: github.com/gorilla/mux
