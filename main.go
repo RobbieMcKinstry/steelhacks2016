@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	_ "io/ioutil"
 	"net/http"
-	_ "net/http/httputil"
+	"net/http/httputil"
+	"net/url"
 	"os"
 	"path"
 	"sync"
@@ -20,6 +20,10 @@ import (
 )
 
 var r *mux.Router
+
+const (
+	IP = "192.168.99.100"
+)
 
 func main() {
 	fmt.Println("Hello Steelhacks!")
@@ -122,7 +126,15 @@ func (projCntr *ProjectContainer) AddProject(project *Project) {
 	defer projCntr.Unlock()
 	project.Port = projCntr.PortCounter
 	projCntr.Projects = append(projCntr.Projects, project)
+	r.Handle("/", ReverseProxy(project)).Host(project.Identifier)
 	projCntr.PortCounter++
+}
+
+func ReverseProxy(project *Project) http.Handler {
+
+	urlP := fmt.Sprintf("http://%v:%v", IP, project.Port)
+	u, _ := url.Parse(urlP)
+	return httputil.NewSingleHostReverseProxy(u)
 }
 
 func GenerateNewHostname() string {
@@ -167,14 +179,6 @@ func BuildImage(client *docker.Client, dirpath, projectName string) {
 	}
 
 	buffer.WriteTo(os.Stdout)
-}
-
-func TagImage(client *docker.Client, appName string) {
-
-	err := client.TagImage(appName, docker.TagImageOptions{Repo: "this", Tag: appName})
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func GetImageConfig(client *docker.Client, imageTag string) *docker.Config {
