@@ -1,10 +1,27 @@
-hash: fa22c86eacffdcb606f7551321ba54dadfbc262e42d3a75ae7581d93374b962b
-updated: 2016-02-20T17:03:06.082957716-05:00
+hash: 9ccba051dfd7ad0ec38676157a280eadeb32ac37217e38d532b338bb56e61187
+updated: 2016-02-20T18:09:57.375861002-05:00
 imports:
 - name: github.com/BurntSushi/toml
   version: f772cd89eb0b33743387f826d1918df67f99cc7a
 - name: github.com/dustinkirkland/golang-petname
   version: 2182cecef7f257230fc998bc351a08a5505f5e6c
+- name: github.com/fsouza/go-dockerclient
+  version: d92e9b886690a7daa42daa3807d1829c6e6a9d0a
+  subpackages:
+  - external/github.com/docker/docker/opts
+  - external/github.com/docker/docker/pkg/archive
+  - external/github.com/docker/docker/pkg/fileutils
+  - external/github.com/docker/docker/pkg/homedir
+  - external/github.com/docker/docker/pkg/stdcopy
+  - external/github.com/hashicorp/go-cleanhttp
+  - external/github.com/Sirupsen/logrus
+  - external/github.com/docker/docker/pkg/idtools
+  - external/github.com/docker/docker/pkg/ioutils
+  - external/github.com/docker/docker/pkg/pools
+  - external/github.com/docker/docker/pkg/promise
+  - external/github.com/docker/docker/pkg/system
+  - external/github.com/opencontainers/runc/libcontainer/user
+  - external/golang.org/x/net/context
 - name: github.com/gorilla/context
   version: 1c83b3eabd45b6d76072b66b746c20815fb2872d
 - name: github.com/gorilla/mux
