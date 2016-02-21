@@ -29,15 +29,27 @@ func main() {
 	fmt.Println("Hello Steelhacks!")
 
 	r = mux.NewRouter()
-	r.HandleFunc("/", HomeHandler).Host("localhost")
+	r.HandleFunc("/", HomeHandler)
 	r.HandleFunc("/projects", ProjectHandler)
 	r.HandleFunc("/upload", UploadGetHandler).Methods("GET")
 	r.HandleFunc("/upload", UploadPostHandler).Methods("POST")
+	r.HandleFunc("/project/{name}", CustomHandler)
 	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.Handle("/", r)
 	log.Println("Running on localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 
+}
+
+func CustomHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	name := vars["name"]
+
+	for _, elem := range Container.Projects {
+		if elem.Identifier == name {
+			elem.ReverseProxy.ServeHTTP(w, r)
+		}
+	}
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -108,11 +120,12 @@ func GetProjectFromRequest(r *http.Request) *Project {
 }
 
 type Project struct {
-	Authors     string `json:"authors"`
-	Description string `json:"description"`
-	Title       string `json:"title"`
-	Identifier  string `json:"identifier"`
-	Port        int
+	Authors      string `json:"authors"`
+	Description  string `json:"description"`
+	Title        string `json:"title"`
+	Identifier   string `json:"identifier"`
+	Port         int
+	ReverseProxy *httputil.ReverseProxy
 }
 
 type ProjectContainer struct {
@@ -125,9 +138,14 @@ func (projCntr *ProjectContainer) AddProject(project *Project) {
 	projCntr.Lock()
 	defer projCntr.Unlock()
 	project.Port = projCntr.PortCounter
+	urlP := fmt.Sprintf("http://%v:%v", IP, project.Port)
+	u, _ := url.Parse(urlP)
+	project.ReverseProxy = httputil.NewSingleHostReverseProxy(u)
 	projCntr.Projects = append(projCntr.Projects, project)
-	subdomain := fmt.Sprintf("{subdomain:%s}", project.Identifier)
-	r.Handle("/", ReverseProxy(project)).Host(subdomain)
+
+	//subdomain := fmt.Sprintf("{subdomain:%s}", project.Identifier)
+	//r.Handle("/", ReverseProxy(project)).Host(subdomain)
+	//r.HandleFunc("/", redirector(project.Identifier)).Host(subdomain)
 	projCntr.PortCounter++
 }
 
