@@ -29,10 +29,10 @@
       <div class="card-panel white hoverable"><!--Todo make pink-->
         <div>
           <h1>Upload your Things</h1>
-          <p>This is a platform that allows users to upload and display their web applications.</p>
+          <p>Add an author name, the website title, a description of the site, and a zipped project file. Then submit to view the site!</p>
         </div>
         <div class="row">
-          <div class="input-field col s6 offset-s3">
+          <div class="input-field col s8 offset-s2">
             <form method="post" action="/upload" enctype="multipart/form-data">
               <i class="material-icons prefix">account_circle</i>
               <input id="authors" name="authors" type="text" class="validate">
@@ -40,26 +40,26 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <i class="material-icons prefix">info_outline</i>
-              <input type="text" name="description"class="validate"></input>
-              <label for="icon_prefix">Description</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6 offset-s3">
+            <div class="input-field col s8 offset-s2">
               <i class="material-icons prefix">description</i>
               <input type="text" name="title" class="validate"></input>
               <label for="icon_prefix">Title</label>
             </div>
           </div>
           <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">info_outline</i>
+              <textarea type="text" id="textarea1" name="description"class="validate materialize-textarea"></textarea>
+              <label for="icon_prefix">Description</label>
+            </div>
+          </div>
+         <div class="row">
             <div class="file-field input-field">
-              <div class="btn col s2 offset-s1">
+              <div class="btn col s2">
                 <span>File</span>
                 <input type="file" id= "application" name="application">
               </div>
-              <div class="file-path-wrapper col s7">
+              <div class="file-path-wrapper col s9">
                 <input class="file-path validate" type="text">
               </div>
             </div>
