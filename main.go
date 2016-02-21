@@ -29,7 +29,7 @@ func main() {
 	fmt.Println("Hello Steelhacks!")
 
 	r = mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
+	r.HandleFunc("/", HomeHandler).Host("localhost")
 	r.HandleFunc("/projects", ProjectHandler)
 	r.HandleFunc("/upload", UploadGetHandler).Methods("GET")
 	r.HandleFunc("/upload", UploadPostHandler).Methods("POST")
@@ -126,7 +126,8 @@ func (projCntr *ProjectContainer) AddProject(project *Project) {
 	defer projCntr.Unlock()
 	project.Port = projCntr.PortCounter
 	projCntr.Projects = append(projCntr.Projects, project)
-	r.Handle("/", ReverseProxy(project)).Host(project.Identifier)
+	subdomain := fmt.Sprintf("{subdomain:%s}", project.Identifier)
+	r.Handle("/", ReverseProxy(project)).Host(subdomain)
 	projCntr.PortCounter++
 }
 
