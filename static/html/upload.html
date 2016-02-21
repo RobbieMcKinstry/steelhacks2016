@@ -36,41 +36,48 @@
         </div>
         <div class="row">
           <div class="input-field col s6 offset-s3">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="authors" name="authors" type="text" class="validate">
-            <label for="icon_prefix">Authors</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6 offset-s3">
-            <i class="material-icons prefix">info_outline</i>
-            <input type="text" name="description"class="validate"></input>
-            <label for="icon_prefix">Description</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s6 offset-s3">
-            <i class="material-icons prefix">description</i>
-            <input type="text" name="title" class="validate"></input>
-            <label for="icon_prefix">Title</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="file-field input-field">
-            <div class="btn col s2 offset-s1">
-              <span>File</span>
-              <input type="file" id= "application" name="application">
-            </div>
-            <div class="file-path-wrapper col s7">
-              <input class="file-path validate" type="text">
+            <form method="post" action="/upload" enctype="multipart/form-data">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="authors" name="authors" type="text" class="validate">
+              <label for="icon_prefix">Authors</label>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="input-field col s6 offset-s3">
+              <i class="material-icons prefix">info_outline</i>
+              <input type="text" name="description"class="validate"></input>
+              <label for="icon_prefix">Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6 offset-s3">
+              <i class="material-icons prefix">description</i>
+              <input type="text" name="title" class="validate"></input>
+              <label for="icon_prefix">Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field">
+              <div class="btn col s2 offset-s1">
+                <span>File</span>
+                <input type="file" id= "application" name="application">
+              </div>
+              <div class="file-path-wrapper col s7">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn waves-effect waves-light col s2 offset-s5" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
         <div class="row"></div>
       </div>
     </div>
   </div>
-<!--  <div class="row" />
+  <!--  <div class="row" />
   <img class="col s5 offset-s3" src="http://d55ohm6038bug.cloudfront.net/June2014-Bojack/images/flamingline.gif" />-->
 </div>
 </body>
