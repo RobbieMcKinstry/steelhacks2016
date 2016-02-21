@@ -1,25 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>Title</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <link href="style.css" rel="stylesheet"/>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/static/stylesheets/index.css">
 </head>
+
 <body>
-  <h1>Upload your things:</h1>
-  <form method="post" action="/upload" enctype="multipart/form-data">
-    <input type="text" name="title"></input>
-    <input type="text" name="author"></input>
-    <input type="text" name="description"></input>
-    <div id="drop">
-        Drop files here...
-        <div id="browse">
-            <input type="file" name="application" id="application" />
-        </div>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Tentative Name</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="upload">Upload</a></li>
+        <li><a href="projects">Projects</a></li>
+      </ul>
     </div>
-    <input type="submit" value="Submit">
-  </form>
-  <script src="../js/dragndrop.js"></script>
+  </nav>
+  <div class="row"> </div>
+  <div class="row"> </div>
+  <div class="row"> </div>
+  <div class="row">
+    <div class="col s12 offset-s1">
+      <div class="card-panel white hoverable"><!--Todo make pink-->
+        <div>
+          <h1>Upload your Things</h1>
+          <p>This is a platform that allows users to upload and display their web applications.</p>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 offset-s3">
+            <form method="post" action="/upload" enctype="multipart/form-data">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="authors" name="authors" type="text" class="validate">
+              <label for="icon_prefix">Authors</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6 offset-s3">
+              <i class="material-icons prefix">info_outline</i>
+              <input type="text" name="description"class="validate"></input>
+              <label for="icon_prefix">Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6 offset-s3">
+              <i class="material-icons prefix">description</i>
+              <input type="text" name="title" class="validate"></input>
+              <label for="icon_prefix">Title</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="file-field input-field">
+              <div class="btn col s2 offset-s1">
+                <span>File</span>
+                <input type="file" id= "application" name="application">
+              </div>
+              <div class="file-path-wrapper col s7">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn waves-effect waves-light col s2 offset-s5" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        <div class="row"></div>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="row" />
+  <img class="col s5 offset-s3" src="http://d55ohm6038bug.cloudfront.net/June2014-Bojack/images/flamingline.gif" />-->
+</div>
 </body>
 </html>
