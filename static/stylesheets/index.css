@@ -12,6 +12,10 @@ body div {
   width: 75%;
 }
 /* line 12, ../sass/index.sass */
+body div .card-panel {
+  margin-top: 60px;
+}
+/* line 14, ../sass/index.sass */
 body div h1, body div p {
   text-align: center;
 }
