@@ -1,1 +1,37 @@
-Success! Your website can be found at {{.Identifier}}.localhost:8080
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="/static/stylesheets/index.css">
+    </head>
+
+    <body>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">HackSpot</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="upload">Upload</a></li>
+                    <li><a href="projects">Projects</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col s12 offset-s1">
+                <div class="card-panel white">
+                    <h2> Success! Your website can be found at {{.Identifier}}.localhost:8080 </h2>
+                    <a class="waves-effect waves-light btn offset-s4" href="projects">See Project List</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
