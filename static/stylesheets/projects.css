@@ -1,0 +1,13 @@
+/* line 5, ../sass/projects.sass */
+body {
+  background-color: #ECEFF1;
+}
+/* line 7, ../sass/projects.sass */
+body nav {
+  background-color: #607D8B;
+}
+/* line 9, ../sass/projects.sass */
+body nav .nav-wrapper {
+  width: 75%;
+  margin: auto;
+}
